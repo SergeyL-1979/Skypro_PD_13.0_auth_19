@@ -22,14 +22,12 @@ def create_app(config: Config) -> Flask:
     application = Flask(__name__)
     application.config.from_object(config)
     application.app_context().push()
-
     return application
 
 
 def configure_app(application: Flask):
     db.init_app(application)
-    api = Api(app=app, title="SkyPro: auth_JWT_lesson_19",
-              authorizations=authentication)
+    api = Api(app=app, title="SkyPro: auth_JWT_lesson_19", authorizations=authentication)
     api.add_namespace(movie_ns)
     api.add_namespace(director_ns)
     api.add_namespace(genre_ns)
