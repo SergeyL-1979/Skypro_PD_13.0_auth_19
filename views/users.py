@@ -43,6 +43,7 @@ class UserView(Resource):
         user_service.update_partial(user_json)
         return "", 204
 
+    # @auth_required
     @admin_required
     def delete(self, uid):
         user_service.delete(uid)

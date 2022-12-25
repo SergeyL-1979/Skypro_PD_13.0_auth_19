@@ -95,6 +95,11 @@ DELETE http://127.0.0.1:10001/movies/21
 
 ###
 
+GET http://127.0.0.1:10000/users/
+Accept: application/json
+
+###
+
 POST http://127.0.0.1:10000/users/
 Accept: application/json
 Content-Type: application/json
@@ -118,6 +123,8 @@ Content-Type: application/json
 ###
 
 DELETE http://127.0.0.1:10000/users/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ilx1MDQyZVx1MDQxN1x1MDQxNVx1MDQyMCIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNjcxOTYzNTQ3fQ.Ia8_kk54sTyvdDcszmMOAa0oReJddZIUh1HEn2-zEiQ
 
 ###
 POST http://127.0.0.1:10000/auth/
@@ -128,6 +135,8 @@ Content-Type: application/json
   "password": "test"
 }
 
+###
+#POST
 ###
 POST http://127.0.0.1:10000/auth/
 Content-Type: application/json
