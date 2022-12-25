@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import request
-from flask_restx import Resource, Namespace
+from flask_restx import Resource, Namespace, Api
 
 from implemented import user_service
 from dao.model.user import UserSchema
@@ -13,6 +13,8 @@ user_ns = Namespace('users')
 
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
+
+api = Api()
 
 
 @user_ns.route('/')
