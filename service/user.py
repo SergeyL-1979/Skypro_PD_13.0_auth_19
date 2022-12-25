@@ -64,21 +64,23 @@ class UserService:
             PWD_HASH_SALT,
             PWD_HASH_ITERATIONS
         ))
-
-    def compare_passwords(self, password_hash, other_password) -> bool:
-        return hmac.compare_digest(
-            base64.b64decode(password_hash),
-            hashlib.pbkdf2_hmac(
-                'sha256',
-                other_password.encode('utf-8'),
-                PWD_HASH_SALT,
-                PWD_HASH_ITERATIONS
-            )
-        )
-
-
+        # return hashlib.pbkdf2_hmac(
+        #     'sha256',
+        #     password.encode('utf-8'),  # Преобразовать пароль в байты
+        #     PWD_HASH_SALT,
+        #     PWD_HASH_ITERATIONS
+        # ).decode("utf-8", "ignore")
 
     # def compare_passwords(self, password_hash, other_password) -> bool:
+    #     return hmac.compare_digest(
+    #         base64.b64decode(password_hash),
+    #         hashlib.pbkdf2_hmac(
+    #             'sha256',
+    #             other_password.encode('utf-8'),
+    #             PWD_HASH_SALT,
+    #             PWD_HASH_ITERATIONS
+    #         )
+    #     )
         # decoded_digest = base64.b64encode(password_hash)
         # hash_digets = hashlib.pbkdf2_hmac(
         #     'sha256',

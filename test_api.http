@@ -112,12 +112,12 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "password": "1"
+  "password": "1478"
 }
 
 ###
 
-DELETE http://127.0.0.1:10000/users/4
+DELETE http://127.0.0.1:10000/users/5
 
 ###
 POST http://127.0.0.1:10000/auth/
@@ -126,4 +126,13 @@ Content-Type: application/json
 {
   "username": "Admin",
   "password": "test"
+}
+
+###
+POST http://127.0.0.1:10000/auth/
+Content-Type: application/json
+
+{
+  "username": "ЮЗЕР",
+  "password": "1478"
 }
