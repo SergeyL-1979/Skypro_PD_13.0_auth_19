@@ -7,6 +7,7 @@ from implemented import user_service
 from dao.model.user import UserSchema
 
 from decorators import admin_required
+from decorators import auth_required
 
 user_ns = Namespace('users')
 
@@ -17,12 +18,12 @@ users_schema = UserSchema(many=True)
 @user_ns.route('/')
 class UserView(Resource):
     def get(self):
-        users = user_service.get_all()
-        return users_schema.dump(users), 200
+        all_users = user_service.get_all()
+        return users_schema.dump(all_users), 200
 
     def post(self):
-        user_data = request.json
-        user = user_service.create(user_data)
+        user_json = request.json
+        user = user_service.create(user_json)
         return "", 201, {"location": f"/users/{user.id}"}
 
 
@@ -42,7 +43,7 @@ class UserView(Resource):
         user_service.update_partial(user_json)
         return "", 204
 
-    @admin_required
+    @auth_required
     def delete(self, uid):
         user_service.delete(uid)
         return "", 204

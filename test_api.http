@@ -124,6 +124,6 @@ POST http://127.0.0.1:10000/auth/
 Content-Type: application/json
 
 {
-  "username": "joeq",
+  "username": "Admin",
   "password": "test"
 }
