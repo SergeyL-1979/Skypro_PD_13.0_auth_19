@@ -1,0 +1,18 @@
+POST http://127.0.0.1:10000/auth/
+Content-Type: application/json
+
+{
+  "username": "Admin",
+  "password": "test"
+}
+
+###
+#POST
+###
+POST http://127.0.0.1:10000/auth/
+Content-Type: application/json
+
+{
+  "username": "ЮЗЕР",
+  "password": "1478"
+}
