@@ -14,8 +14,6 @@ user_ns = Namespace('users')
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
-api = Api()
-
 
 @user_ns.route('/')
 class UserView(Resource):
