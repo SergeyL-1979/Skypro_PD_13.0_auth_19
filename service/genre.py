@@ -19,10 +19,10 @@ class GenreService:
 
     def update(self, data):
         gid = data.get("id")
-        director = self.get_one(gid)
-        director.name = data.get("name")
+        genre = self.get_one(gid)
+        genre.name = data.get("name")
 
-        self.dao.update(director)
+        self.dao.update(genre)
 
     def update_partial(self, data):
         gid = data.get("id")

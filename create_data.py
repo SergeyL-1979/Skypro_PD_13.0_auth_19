@@ -8,9 +8,17 @@ from flask_sqlalchemy import SQLAlchemy
 from marshmallow import Schema, fields
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///movies.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100))
+    password = db.Column(db.String(100))
+    role = db.Column(db.String(50))
 
 
 class Movie(db.Model):
@@ -41,6 +49,14 @@ class Genre(db.Model):
 
 db.drop_all()
 db.create_all()
+
+# ====== ADD USERS DATABASE ====================
+u1 = User(username="vasya", password="my_little_pony", role="user")
+u2 = User(username="oleg", password="qwerty", role="user")
+u3 = User(username="oleg", password="P@ssw0rd", role="admin")
+
+with db.session.begin():
+    db.session.add_all([u1, u2, u3])
 
 # -------------------------------------------------------
 data = {
