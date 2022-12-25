@@ -6,6 +6,9 @@ from flask_restx import Resource, Namespace
 from implemented import movie_service
 from dao.model.movie import MovieSchema
 
+from decorators import auth_required
+from decorators import admin_required
+
 movie_ns = Namespace('movies')
 
 movie_schema = MovieSchema()
@@ -27,7 +30,7 @@ class MoviesView(Resource):
 
 @movie_ns.route('/<int:mid>')
 class MoviesView(Resource):
-
+    @auth_required
     def get(self, mid: int):
         try:
             movie = movie_service.get_one(mid)
@@ -35,18 +38,24 @@ class MoviesView(Resource):
         except Exception as e:
             return str(e), 404
 
+    @auth_required
+    @admin_required
     def put(self, mid):
         req_json = request.json
         req_json["id"] = mid
         movie_service.update(req_json)
         return "", 204
 
+    @auth_required
+    @admin_required
     def patch(self, mid):
         req_json = request.json
         req_json["id"] = mid
         movie_service.update_partial(req_json)
         return "", 204
 
+    @auth_required
+    @admin_required
     def delete(self, mid):
         movie_service.delete(mid)
         return "", 204

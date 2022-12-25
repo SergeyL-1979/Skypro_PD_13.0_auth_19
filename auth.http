@@ -19,6 +19,6 @@ POST http://127.0.0.1:10000/auth/
 Content-Type: application/json
 
 {
-  "username": "ЮЗЕР",
-  "password": "1478"
+  "username": "User22",
+  "password": "admin"
 }

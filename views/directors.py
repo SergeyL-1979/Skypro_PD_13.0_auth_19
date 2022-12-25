@@ -6,6 +6,9 @@ from flask_restx import Resource, Namespace
 from implemented import director_service
 from dao.model.director import DirectorSchema
 
+from decorators import auth_required
+from decorators import admin_required
+
 director_ns = Namespace('directors')
 
 director_schema = DirectorSchema()
@@ -27,7 +30,7 @@ class DirectorView(Resource):
 
 @director_ns.route('/<int:did>')
 class DirectorView(Resource):
-
+    @auth_required
     def get(self, did: int):
         try:
             director = director_service.get_one(did)
@@ -35,18 +38,24 @@ class DirectorView(Resource):
         except Exception as e:
             return str(e), 404
 
+    @auth_required
+    @admin_required
     def put(self, did):
         req_json = request.json
         req_json["id"] = did
         director_service.update(req_json)
         return "", 204
 
+    @auth_required
+    @admin_required
     def patch(self, did):
         req_json = request.json
         req_json["id"] = did
         director_service.update(req_json)
         return "", 204
 
+    @auth_required
+    @admin_required
     def delete(self, did):
         director_service.delete(did)
         return "", 204

@@ -6,6 +6,9 @@ from flask_restx import Resource, Namespace
 from implemented import genre_service
 from dao.model.genre import GenreSchema
 
+from decorators import auth_required
+from decorators import admin_required
+
 genre_ns = Namespace('genres')
 
 genre_schema = GenreSchema()
@@ -28,6 +31,7 @@ class GenreView(Resource):
 @genre_ns.route('/<int:gid>')
 class GenreView(Resource):
 
+    @auth_required
     def get(self, gid: int):
         try:
             genre = genre_service.get_one(gid)
@@ -35,18 +39,24 @@ class GenreView(Resource):
         except Exception as e:
             return str(e), 404
 
+    @auth_required
+    @admin_required
     def put(self, gid):
         req_json = request.json
         req_json["id"] = gid
         genre_service.update(req_json)
         return "", 204
 
+    @auth_required
+    @admin_required
     def patch(self, gid):
         req_json = request.json
         req_json["id"] = gid
         genre_service.update(req_json)
         return "", 204
 
+    @auth_required
+    @admin_required
     def delete(self, gid):
         genre_service.delete(gid)
         return "", 204

@@ -16,7 +16,7 @@ from setup_db import db
 
 authentication = {
     "Bearer": {
-        "type": "basic",
+        "type": "apiKey",
         "in": "header",
         "name": "Authorization"
     }
