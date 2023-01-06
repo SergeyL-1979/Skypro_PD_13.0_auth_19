@@ -27,7 +27,7 @@ Content-Type: application/json
 
 DELETE http://127.0.0.1:10000/users/5
 #Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjcyMDAyMjAxfQ.RGRXxeCYDruukoyIWnZ8W3a9lkq-pcoic38y-i5ZAnQ
+Authorization: "TOKEN"
 
 ###
 
